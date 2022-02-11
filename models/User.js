@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+// let validator = require('validator');
 
 const UserSchema = new Schema(
   {
@@ -15,38 +16,44 @@ const UserSchema = new Schema(
       //validate: [validateEmail, 'Please fill a valid email address'],
       // match: [/^[A-Z0-9.+-]+[A-Z0-9.+-]+@[A-Z0-9.-]{2,63}\.([a-z]{2,6})$/, 'Please enter a valid email address']
       //match: [/.+@.+\..+/]
+      // lowercase: true,
+      // validate: (value) => {
+      //   return validator.isEmail(value)
+      // }
     },
     thoughts: [
       {
-        type: Schema.Types.ObjectId, //Foreign Key saying FK is Thought iD
+        type: Schema.Types.ObjectId, //Foreign Key saying FK is Thought ID
         ref: 'Thought' //thoughts from Thought 
       }
     ],
-    // friends: [
-    //   {
-    //     //type: String,
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    //   }
-    // ]
+    friends: [
+      {
+        type: Schema.Types.ObjectId,//Foreign Key saying FK is User ID
+        ref: 'User'
+      }
+    ]
 
   },
   {
     toJSON: {
-      //virtuals: true,
+      virtuals: true,
       //getters: true
     },
-    id: false
+    id: false // virtual doesn't need an ID
   }
 );
 
 // //-----------------  Virtuals  -----------------
-// //Get total number of Friends and Replies on Retrieval
-// UserSchema.virtual('friendCount').get(function () {
-//   // let friendCount = user.friends.length;
-//   let friendCount = friends.length;
-//   return friendCount;
+
+UserSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
+});
+
+// UserSchema.virtual('repliesCount').get(function () {
+//   return this.replies.length;
 // });
+
 
 // -------------- Create User Model --------------
 const User = model('User', UserSchema);

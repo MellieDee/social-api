@@ -1,10 +1,9 @@
 const { Schema, model } = require('mongoose');
 const { stringify } = require('nodemon/lib/utils');
 
-// reaction field's subDoc schema in Thought Model
+// ------ REACTION -------- subDoc schema in Thought 
 const ReactionSchema = new Schema(
-  {
-    //set custom ID to avoid confustion with parent id (ie comment _id)
+  { //set custom ID to avoid confusion with parent id (ie comment _id)
     reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
@@ -24,11 +23,11 @@ const ReactionSchema = new Schema(
       //get: createdAtVal => dateFormat(createdAtVal)
     }
   },
-  // {
-  //   toJSON: { // Tells Schema to use Virtuals & getters
-  //     //getters: true
-  //   },
-  // }
+  {
+    toJSON: { // Tells Schema to use Virtuals & getters
+      //getters: true
+    },
+  }
 );
 
 
@@ -65,12 +64,10 @@ const ThoughtSchema = new Schema(
 );
 
 //-----------------  Virtuals  -----------------
-// Get total number of Friends and Replies on Retrieval
-// thoughtSchema.virtual('reactionCount').get(function () {
-//   let reactionCount = thought.reactions.length;
-//   //let reactionCount = reactions.length;
-//   return reactionCount;
-// });
+// Get Count of Reactions on retrieval
+ThoughtSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
+});
 
 // -------------- Create Thought Model --------------
 const Thought = model('Thought', ThoughtSchema);

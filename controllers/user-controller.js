@@ -24,6 +24,9 @@ const userController = {
       .populate({
         path: 'thoughts'
       })
+      .populate({
+        path: 'friends',
+      })
       // .select('-__v')
       .then(data => {
         if (!data) {
