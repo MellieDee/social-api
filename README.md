@@ -9,7 +9,9 @@ https://docs.mongodb.com/v4.2/tutorial/model-referenced-one-to-many-relationship
 
 https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
 
-https://intellipaat.com/community/34270/mongodb-difference-between-push-addtoset#:~:text=The%20difference%20between%20%24push%2F%24,whether%20it%20exists%20or%20not.
+https://intellipaat.com/community/34270/mongodb-difference-between-push-addtoset#:~:text=The%20difference%20between%20%24push%2F%24,whether%20it%20exists%20or%20not
+
+https://kb.objectrocket.com/mongo-db/the-mongoose-in-operator-1015
 
 https://mongoosejs.com/docs/populate.html#populate-virtuals
 

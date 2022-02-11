@@ -1,5 +1,6 @@
 const { User, Thought } = require('../models');
 
+
 //Create all of these functions as methods of the userController object. 
 // These methods will be used as the callback functions for the Express.js routes Each will take two parameters: req and res.
 
@@ -123,23 +124,70 @@ const userController = {
   },
 
 
-
-  // DELETE a User
-  // Destructures params, dont need body cuz not passing data
-  deleteUser({ params }, res) {
-    User.findOneAndDelete({ _id: params.id })
+  // DELETE  a USER  & their THOUGHTS
+  deleteUser({ params, body }, res) {
+    User.findOneAndDelete(
+      { _id: params.id }
+    )
       .then(data => {
-        if (!data) {
-          res.status(404).json({ messge: 'Cannot find that user.' });
-          return;
-        }
-        res.json(data);
+        Thought.deleteMany({ username: data.username })
+          .then(data => {
+            console.log(data.thoughts)
+            if (!data) {
+              res.status(404).json({ message: 'Cannot find those Thoughts' });
+              return;
+            }
+            res.json(data)
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+          })
       })
       .catch(err => {
         console.log(err);
         res.status(400).json(err);
-      });
+      })
+
   }
 }
 
+
+
+
+
+
+
 module.exports = userController;
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////  DRAFT CODE /////////////
+// // Fist draft - deleting friends?
+// .then(
+//   User.updateMany(
+//     { _id: params.userId },
+//     { $pull: { friends: { user_id: params.user_id } } },
+//     { new: true }
+//   )
+//     .then(data => {
+//       if (!data) {
+//         res.status(404).json({ message: 'Cannot find those friends' });
+//         return;
+//       }
+//       res, json({ message: 'User and friends deleted.' })
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(400).json(err);
+//     })
+// )
