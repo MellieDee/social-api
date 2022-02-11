@@ -95,6 +95,41 @@ const thoughtController = {
       })
   },
 
+
+  // ADD a REACTION
+  addReaction({ params, body }, res) {
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $push: { reactions: body } },
+      { new: true }
+    )
+      .then(data => {
+        if (!data) {
+          res.status(404).json({ message: 'Cannot find that thought!' });
+          return;
+        }
+        res.json(data)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+      });
+  },
+
+
+  // DELETE a REACTION
+  removeReaction({ params }, res) {
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $pull: { reactions: { _id: params.reactionId } } },
+      { new: true }
+    )
+      .then(data => res.json(data)
+      )
+      .catch(err => res.json(err));
+  },
+
+
   // DELETE a Thought
   deleteThought({ params }, res) {
     Thought.findOneAndDelete(
