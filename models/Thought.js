@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
+const { stringify } = require('nodemon/lib/utils');
 
-
+// reaction field's subDoc schema in Thought Model
 const ReactionSchema = new Schema(
   {
     //set custom ID to avoid confustion with parent id (ie comment _id)
@@ -40,15 +41,18 @@ const ThoughtSchema = new Schema(
       minLength: 1,
       maxLength: 280
     },
-    createAt: {
+
+    createdAt: {
       type: Date,
       default: Date.now,
       //get: (createdAtVal) => dateFormat(createdAtVal)
     },
+
     username: {
       type: String,
       required: true
     },
+
     reactions: [ReactionSchema],// use ReactionSchema to validate for a reaction; replies are nested *directly* in thoughts not referenced
   },
   {
@@ -62,13 +66,13 @@ const ThoughtSchema = new Schema(
 
 //-----------------  Virtuals  -----------------
 // Get total number of Friends and Replies on Retrieval
-// UserSchema.virtual('friendCount').get(function () {
-//   let friendCount = user.friends.length;
-//   //let friendCount = friends.length;
-//   return friendCount;
+// thoughtSchema.virtual('reactionCount').get(function () {
+//   let reactionCount = thought.reactions.length;
+//   //let reactionCount = reactions.length;
+//   return reactionCount;
 // });
 
-// -------------- Create User Model --------------
+// -------------- Create Thought Model --------------
 const Thought = model('Thought', ThoughtSchema);
 
 module.exports = Thought

@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 //Create all of these functions as methods of the userController object. 
 // These methods will be used as the callback functions for the Express.js routes Each will take two parameters: req and res.
@@ -16,15 +16,15 @@ const userController = {
       })
   },
 
-
   //  Get ONE User by ID
   getUserByID({ params }, res) {
-    User.findOne({ _id: params.id })
-      // .populate({
-      //   path: 'thoughts',
-      //   select: '-__v'
-      // })
-      .select('-__v')
+    User.findOne(
+      { _id: params.id }
+    )
+      .populate({
+        path: 'thoughts'
+      })
+      // .select('-__v')
       .then(data => {
         if (!data) {
           res.status(404).json({ message: 'Cannot find this User' })
@@ -39,7 +39,7 @@ const userController = {
   },
 
 
-  // Create a new User  --destructured cuz just need the body data
+  // Create a NEW User  --destructured cuz just need the body data
   //can handle [] or a single data point (takes[] from objectStore)
   createUser({ body }, res) {
     User.create(body)
@@ -56,7 +56,7 @@ const userController = {
       { _id: params.id },
       body,
       {
-        new: true,
+        new: true
         //runValidators: true
       } //new means will return the updated doc with changes in it
       //runValidators in conjunction with require fields in Schema so when pizza is updated -t ALSO gets checked for rules - of not peaople could add super mega size etc
@@ -64,7 +64,7 @@ const userController = {
       //set to true returns new not old doc
       .then(data => {
         if (!data) { //confirming data was rec from Mongo
-          res.status(404).json({ message: "Cannot find this User/" })
+          res.status(404).json({ message: "Cannot find this User" })
           return;
         }
         res.json(data)

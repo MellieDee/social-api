@@ -22,28 +22,29 @@ const UserSchema = new Schema(
         ref: 'Thought' //thoughts from Thought 
       }
     ],
-    friends: [
-      {
-        //type: String,
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    ]
+    // friends: [
+    //   {
+    //     //type: String,
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    //   }
+    // ]
+
   },
   {
     toJSON: {
-      virtuals: true,
+      //virtuals: true,
       //getters: true
     },
     id: false
   }
 );
 
-//-----------------  Virtuals  -----------------
-// Get total number of Friends and Replies on Retrieval
+// //-----------------  Virtuals  -----------------
+// //Get total number of Friends and Replies on Retrieval
 // UserSchema.virtual('friendCount').get(function () {
-//   let friendCount = user.friends.length;
-//   //let friendCount = friends.length;
+//   // let friendCount = user.friends.length;
+//   let friendCount = friends.length;
 //   return friendCount;
 // });
 
