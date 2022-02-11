@@ -8,8 +8,8 @@ const thoughtController = {
 
   // CREATE a NEW Thought
   createThought({ body }, res) {
-    const user_id = body.user_id
-    console.log(user_id + ' line 13')
+    const user_id = body.user_id;
+    console.log(user_id + ' line 13');
 
     Thought.create(body)
 

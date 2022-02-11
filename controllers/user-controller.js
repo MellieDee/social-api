@@ -42,7 +42,7 @@ const userController = {
   },
 
 
-  // Create a NEW User  --destructured cuz just need the body data
+  // CREATE a NEW User  --destructured cuz just need the body data
   //can handle [] or a single data point (takes[] from objectStore)
   createUser({ body }, res) {
     User.create(body)
@@ -52,6 +52,7 @@ const userController = {
         res.status(400).json(err);
       })
   },
+
 
   // UPDATE a User by ID
   updateUser({ params, body }, res) {
@@ -77,6 +78,29 @@ const userController = {
         res.status(400).json(err);
       })
   },
+
+
+  // ADD FRIEND
+  addFriend({ params, body }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId }, // where user id = id from route param
+      { $push: { friends: body } },
+      { new: true }
+    )
+      .then(data => {
+        if (!data) {
+          res.status(404).json({ message: 'Cannot find that user!' });
+          return;
+        }
+        res.json(data)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+      })
+  },
+
+
 
   // DELETE a User
   // Destructures params, dont need body cuz not passing data
