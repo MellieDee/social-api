@@ -4,8 +4,8 @@ const {
   getUserByID,
   updateUser,
   deleteUser,
-  addFriend
-  // removeFriend
+  addFriend,
+  removeFriend
 } = require('../../controllers/user-controller')
 
 const router = require('express').Router();
@@ -28,16 +28,11 @@ router
   .delete(deleteUser)
 
 
-// Set up Friend Routes - POST/PUT
+// // Set up Friend Routes - POST & DELETE
 router
-  .route('/:userId/friends')
-  .put(addFriend)
-
-
-// Set Up Friend Routes - DELETE
-// router
-//   .route('/users/:userId/friends/:friendId')
-// .delete(removeFriend)
+  .route('/:userId/friends/:friendId')
+  .post(addFriend)
+  .delete(removeFriend)
 
 
 

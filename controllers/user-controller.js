@@ -42,7 +42,7 @@ const userController = {
   },
 
 
-  // CREATE a NEW User  --destructured cuz just need the body data
+  // CREATE a NEW User  --destructured 
   //can handle [] or a single data point (takes[] from objectStore)
   createUser({ body }, res) {
     User.create(body)
@@ -63,9 +63,8 @@ const userController = {
         new: true
         //runValidators: true
       } //new means will return the updated doc with changes in it
-      //runValidators in conjunction with require fields in Schema so when pizza is updated -t ALSO gets checked for rules - of not peaople could add super mega size etc
+      //runValidators in conjunction with require fields in Schema so when user is updated ALSO gets checked for rules - if not users could add invalid text
     )
-      //set to true returns new not old doc
       .then(data => {
         if (!data) { //confirming data was rec from Mongo
           res.status(404).json({ message: "Cannot find this User" })
@@ -80,11 +79,12 @@ const userController = {
   },
 
 
-  // ADD FRIEND
-  addFriend({ params, body }, res) {
+  // ADD FRIEND (post?)
+  addFriend({ params }, res) {
+    // and friend to User
     User.findOneAndUpdate(
       { _id: params.userId }, // where user id = id from route param
-      { $push: { friends: body } },
+      { $addToSet: { friends: params.friendId } },
       { new: true }
     )
       .then(data => {
@@ -92,12 +92,34 @@ const userController = {
           res.status(404).json({ message: 'Cannot find that user!' });
           return;
         }
-        res.json(data)
+        res.json({ message: 'Friend was added successfully!' })
       })
       .catch(err => {
         console.log(err);
         res.status(400).json(err);
       })
+  },
+
+
+
+  // DELETE a FRIEND
+  removeFriend({ params }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      { $pull: { friends: params.friendId } },
+      { new: true }
+    )
+      .then(data => {
+        if (!data) {
+          res.status(404).json({ message: 'Cannot find that thought!' });
+          return;
+        }
+        res.json({ message: 'Friend Delete was successful.' })
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+      });
   },
 
 

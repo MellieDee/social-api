@@ -118,14 +118,13 @@ const thoughtController = {
 
 
   // DELETE a REACTION
-  removeReaction({ params }, res) {
+  removeReaction({ params, body }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
-      { $pull: { reactions: { _id: params.reactionId } } },
+      { $pull: { reactions: { reactionId: body.reactionId } } },
       { new: true }
     )
-      .then(data => res.json(data)
-      )
+      .then(data => res.json(data))
       .catch(err => res.json(err));
   },
 

@@ -24,10 +24,7 @@ router
 
 router
   .route('/:thoughtId/reactions')
-  .put(addReaction)
-
-router
-  .route('/:thoughtId/reactions/:reactionId')
-  .delete(removeReaction)
+  .post(addReaction)
+// .delete(removeReaction)
 
 module.exports = router
