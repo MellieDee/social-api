@@ -54,7 +54,7 @@ See Installation.
 
 ---
 
-Download the walk through video [here](https://drive.google.com/file/d/14ZxVdSj3wzapQpta7039QK6bzbd-C0XT/view?usp=sharing)
+Watch walk through video [here](https://youtu.be/jcwn0kXOXvI)
 
 &nbsp;
 
