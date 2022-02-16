@@ -62,7 +62,7 @@ Walk through video [here](https://)
 
 ---
 
-<img src="./utils/assets/images/screenShot1.jpg" width=" 375" height="300" alt="Get all users route in Insomnia.">
+<img src="/utils/assets/images/screenShot1.jpg" width=" 375" height="300" alt="Get all users route in Insomnia.">
 
 &nbsp;
 
