@@ -1,6 +1,93 @@
-# social-api
+# **Social-API**
 
-References:
+&nbsp;
+<img src="https://img.shields.io/badge/license-MIT-blue.svg">
+
+&nbsp;
+
+## **Project Description**
+
+---
+
+Backend for a simple social API featuring Express, MongoDB, Mongoose and Day.js
+
+&nbsp;
+
+## Table of Contents
+
+---
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [URL](#url)
+- [Screenshot](#screenshot)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Resources](#resources)
+- [Questions](#questions)
+- [License](#license)
+
+&nbsp;
+
+## **Installation**
+
+---
+
+- Ensure you have Node installed.
+- Fork the repo
+- Clone to local directory
+- Go to package.json to view dependencies, then install them from command line
+- To see routes in action, signup for or login to Insomnia and create the needed routes as outlined in controllers and routes folders
+- Start the server with `npm start` or `node server` in command line then move to Insomnia to test.
+
+&nbsp;
+
+## **Usage**
+
+---
+
+See Installation.
+
+&nbsp;
+
+## **URL**
+
+---
+
+Walk through video [here](https://)
+
+&nbsp;
+
+## **Screenshot**
+
+---
+
+<img src="./utils/assets/images/screenShot1.jpg" width=" 375" height="300" alt="Get all users route in Insomnia.">
+
+&nbsp;
+
+### **Contributing**
+
+---
+
+Not accepting contributors.
+
+&nbsp;
+
+### **Tests**
+
+---
+
+No tests at this time.
+
+&nbsp;
+
+### **Resources**
+
+---
+
+#### I Used or Was Inspired By
+
 https://www.codegrepper.com/code-examples/whatever/mongoose+validate+match+regex
 
 https://day.js.org/docs/en/plugin/localized-format
@@ -24,3 +111,40 @@ https://regex101.com/r/Ts5PkE/1
 https://stackoverflow.com/questions/18553946/remove-sub-document-from-mongo-with-mongoose
 
 https://stackoverflow.com/questions/61102675/how-to-do-mongoose-model-self-reference-on-typescript
+
+&nbsp;
+
+### **Questions**
+
+---
+
+Reach me directly at melliedeedevelops@outlook.com - love to chat!</br>  
+Or checkout out my GitHub profile: [github.com/MellieDee](https://github.com/MellieDee)
+
+&nbsp;
+
+### **License**
+
+---
+
+Copyright (c) Melanie Dubberley.
+
+Licensed under the [MIT](https://choosealicense.com/licenses) license.
+
+&nbsp;
+
+##### Return to:
+
+---
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [URL](#url)
+- [Screenshot](#screenshot)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Resources](#resources)
+- [Questions](#questions)
+- [License](#license)
+
+&nbsp;
