@@ -19,6 +19,8 @@ https://mongoosejs.com/docs/populate.html#populate-virtuals
 
 https://www.regular-expressions.info/email.html
 
+https://regex101.com/r/Ts5PkE/1
+
 https://stackoverflow.com/questions/18553946/remove-sub-document-from-mongo-with-mongoose
 
 https://stackoverflow.com/questions/61102675/how-to-do-mongoose-model-self-reference-on-typescript
