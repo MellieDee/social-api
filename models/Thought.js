@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
-const { stringify } = require('nodemon/lib/utils');
+// const { stringify } = require('nodemon/lib/utils')
+const formatDate = require('../utils/formatDate');
 
 // ------ REACTION -------- subDoc schema in Thought 
 const ReactionSchema = new Schema(
@@ -20,12 +21,12 @@ const ReactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //get: createdAtVal => dateFormat(createdAtVal)
+      get: (createdAtVal) => formatDate(createdAtVal)
     }
   },
   {
     toJSON: { // Tells Schema to use Virtuals & getters
-      //getters: true
+      getters: true
     },
   }
 );
@@ -40,13 +41,11 @@ const ThoughtSchema = new Schema(
       minLength: 1,
       maxLength: 280
     },
-
     createdAt: {
       type: Date,
       default: Date.now,
-      //get: (createdAtVal) => dateFormat(createdAtVal)
+      get: (createdAtVal) => formatDate(createdAtVal)
     },
-
     username: {
       type: String,
       required: true
@@ -57,7 +56,7 @@ const ThoughtSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
-      //getters: true
+      getters: true
     },
     id: false
   }

@@ -42,7 +42,7 @@ const thoughtController = {
       .then(data => res.json(data))
       .catch(err => {
         console.log(err);
-        res.statust(400).json(err)
+        res.status(400).json(err)
       })
   },
 
